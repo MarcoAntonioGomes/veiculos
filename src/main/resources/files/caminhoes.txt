@@ -1,0 +1,3 @@
+13000;Bau;500;Vertis;Iveco;200000
+9000;Plataforma;300;45s14;Iveco;100000
+10000;Prancha;400;1313;Volvo;150000

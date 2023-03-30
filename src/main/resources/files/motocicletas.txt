@@ -1,0 +1,3 @@
+true;4;300;CB300;Honda;30000
+false;5;400;Z400;Kawasaki;23000
+true;4;150;CG Titan;Honda;8000

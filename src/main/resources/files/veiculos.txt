@@ -1,0 +1,9 @@
+A;Carro comum;Gol;30000;volkswagen;false;4
+A;Caminhonete;Strada;50000;Fiat;true;4
+A;Esportivo;A4;400000;Audi;true;4
+M;true;4;300;CB300;Honda;30000
+M;false;5;400;Z400;Kawasaki;23000
+M;true;4;150;CG Titan;Honda;8000
+C;13000;Bau;500;Vertis;Iveco;200000
+C;9000;Plataforma;300;45s14;Iveco;100000
+C;10000;Prancha;400;1313;Volvo;150000

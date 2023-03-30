@@ -1,0 +1,3 @@
+Carro comum;Gol;30000;volkswagen;false;4
+Caminhonete;Strada;50000;Fiat;true;4
+Esportivo;A4;400000;Audi;true;4

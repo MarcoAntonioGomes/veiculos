@@ -1,0 +1,330 @@
+swagger: '2.0'
+info:
+  description: Aplicação Spring Boot REST API
+  version: 1.0.0
+  title: Gestão de Veículos
+  contact:
+    name: Infnet
+    url: https://www.vr.com.br/
+    email: infnet@edu.com.br
+  license:
+    name: Apache License Version 2.0
+    url: https://www.apache.org/licenses/LICENSE-2.0
+host: localhost:8989
+basePath: /
+tags:
+  - name: automovel-controller
+    description: Automovel Controller
+  - name: caminhao-controller
+    description: Caminhao Controller
+  - name: motocicleta-controller
+    description: Motocicleta Controller
+  - name: veiculo-controller
+    description: Veiculo Controller
+paths:
+  /automovel:
+    get:
+      tags:
+        - automovel-controller
+      summary: telaCadastro
+      operationId: telaCadastroUsingGET
+      produces:
+        - '*/*'
+      responses:
+        '200':
+          description: OK
+          schema:
+            type: string
+  /automovel/incluir:
+    post:
+      tags:
+        - automovel-controller
+      summary: incluir
+      operationId: incluirUsingPOST
+      consumes:
+        - application/json
+      produces:
+        - '*/*'
+      parameters:
+        - name: id
+          in: query
+          required: false
+          type: integer
+          format: int32
+        - name: marca
+          in: query
+          required: false
+          type: string
+        - name: nome
+          in: query
+          required: false
+          type: string
+        - name: possuiAirbag
+          in: query
+          required: false
+          type: boolean
+        - name: quantidadeDePortas
+          in: query
+          required: false
+          type: integer
+          format: int32
+        - name: tipo
+          in: query
+          required: false
+          type: string
+        - name: valor
+          in: query
+          required: false
+          type: number
+          format: float
+      responses:
+        '200':
+          description: OK
+          schema:
+            type: string
+  /automovel/{id}/excluir:
+    get:
+      tags:
+        - automovel-controller
+      summary: exclusao
+      operationId: exclusaoUsingGET
+      produces:
+        - '*/*'
+      parameters:
+        - name: id
+          in: path
+          description: id
+          required: true
+          type: integer
+          format: int32
+      responses:
+        '200':
+          description: OK
+          schema:
+            type: string
+  /caminhao:
+    get:
+      tags:
+        - caminhao-controller
+      summary: telaCadastro
+      operationId: telaCadastroUsingGET_1
+      produces:
+        - '*/*'
+      responses:
+        '200':
+          description: OK
+          schema:
+            type: string
+  /caminhao/incluir:
+    post:
+      tags:
+        - caminhao-controller
+      summary: incluir
+      operationId: incluirUsingPOST_1
+      consumes:
+        - application/json
+      produces:
+        - '*/*'
+      parameters:
+        - name: capacidadeDeTransporte
+          in: query
+          required: false
+          type: number
+          format: float
+        - name: id
+          in: query
+          required: false
+          type: integer
+          format: int32
+        - name: marca
+          in: query
+          required: false
+          type: string
+        - name: nome
+          in: query
+          required: false
+          type: string
+        - name: tipoCarroceria
+          in: query
+          required: false
+          type: string
+        - name: torque
+          in: query
+          required: false
+          type: number
+          format: float
+        - name: valor
+          in: query
+          required: false
+          type: number
+          format: float
+      responses:
+        '200':
+          description: OK
+          schema:
+            type: string
+  /caminhao/{id}/excluir:
+    get:
+      tags:
+        - caminhao-controller
+      summary: exclusao
+      operationId: exclusaoUsingGET_1
+      produces:
+        - '*/*'
+      parameters:
+        - name: id
+          in: path
+          description: id
+          required: true
+          type: integer
+          format: int32
+      responses:
+        '200':
+          description: OK
+          schema:
+            type: string
+  /motocicleta:
+    get:
+      tags:
+        - motocicleta-controller
+      summary: telaCadastro
+      operationId: telaCadastroUsingGET_2
+      produces:
+        - '*/*'
+      responses:
+        '200':
+          description: OK
+          schema:
+            type: string
+  /motocicleta/incluir:
+    post:
+      tags:
+        - motocicleta-controller
+      summary: incluir
+      operationId: incluirUsingPOST_2
+      consumes:
+        - application/json
+      produces:
+        - '*/*'
+      parameters:
+        - name: cilindrada
+          in: query
+          required: false
+          type: integer
+          format: int32
+        - name: id
+          in: query
+          required: false
+          type: integer
+          format: int32
+        - name: marca
+          in: query
+          required: false
+          type: string
+        - name: nome
+          in: query
+          required: false
+          type: string
+        - name: numeroDeMarchas
+          in: query
+          required: false
+          type: integer
+          format: int32
+        - name: possuiCarenagem
+          in: query
+          required: false
+          type: boolean
+        - name: valor
+          in: query
+          required: false
+          type: number
+          format: float
+      responses:
+        '200':
+          description: OK
+          schema:
+            type: string
+  /motocicleta/{id}/excluir:
+    get:
+      tags:
+        - motocicleta-controller
+      summary: exclusao
+      operationId: exclusaoUsingGET_2
+      produces:
+        - '*/*'
+      parameters:
+        - name: id
+          in: path
+          description: id
+          required: true
+          type: integer
+          format: int32
+      responses:
+        '200':
+          description: OK
+          schema:
+            type: string
+  /veiculos/all/by/ids:
+    get:
+      tags:
+        - veiculo-controller
+      summary: Serviço responsável por recuperar veículos pelos identificadores
+      operationId: getVeiculosByIdsUsingGET
+      produces:
+        - '*/*'
+      parameters:
+        - name: ids
+          in: query
+          description: ids
+          required: true
+          type: array
+          items:
+            type: integer
+            format: int32
+          collectionFormat: multi
+      responses:
+        '200':
+          description: Veículos recuperado com sucesso!
+          schema:
+            type: array
+            items:
+              $ref: '#/definitions/Veiculo'
+        '404':
+          description: Serviço indisponível!
+  /veiculos/veiculo/{id}/excluir:
+    get:
+      tags:
+        - veiculo-controller
+      summary: Serviço responsável por excluir o veiculo pelo identificador
+      operationId: excluirUsingGET
+      produces:
+        - '*/*'
+      parameters:
+        - name: id
+          in: path
+          description: id
+          required: true
+          type: integer
+          format: int32
+      responses:
+        '200':
+          description: Veículo excluído com sucesso!
+          schema:
+            type: string
+        '404':
+          description: Serviço indisponível!
+definitions:
+  Veiculo:
+    type: object
+    properties:
+      id:
+        type: integer
+        format: int32
+      marca:
+        type: string
+      nome:
+        type: string
+      valor:
+        type: number
+        format: float
+    title: Veiculo
