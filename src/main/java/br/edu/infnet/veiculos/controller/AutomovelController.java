@@ -2,45 +2,53 @@ package br.edu.infnet.veiculos.controller;
 
 
 
-import br.edu.infnet.veiculos.model.domain.Automovel;
-import br.edu.infnet.veiculos.service.AutomovelService;
+import java.util.Collection;
+
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
+
+import br.edu.infnet.veiculos.model.domain.Automovel;
+import br.edu.infnet.veiculos.service.AutomovelService;
 
 
 
-@Controller
+@RestController
+@RequestMapping(value = "/automovel")
 public class AutomovelController {
 
    @Autowired
    private AutomovelService automovelService;
 
-    @GetMapping(value = "/automovel/{id}/excluir")
-    public String exclusao(@PathVariable Integer id){
+    @DeleteMapping(value = "/{id}")
+    public ResponseEntity<String> exclusao(@PathVariable Integer id){
         automovelService.excluir(id);
-        return "redirect:/automovel/lista";
+        return new ResponseEntity<String>("Automovel excluído com sucesso!!", HttpStatus.NO_CONTENT);
     }
 
-
-    @PostMapping(value = "automovel/incluir")
-    public String incluir(Automovel automovel){
-
-        automovelService.incluir(automovel);
-
-      return "";
+    @PostMapping
+    public ResponseEntity<Automovel> incluir(@RequestBody Automovel automovel){
+        Automovel automovelNovo = automovelService.merge(automovel);
+        return ResponseEntity.status(HttpStatus.CREATED).body(automovelNovo);
     }
 
-    @GetMapping(value = "/automovel")
-    public String telaCadastro(){
-        return "automovel/cadastro";
+    @GetMapping
+    public ResponseEntity<Collection<Automovel>> listar(){
+    	Collection<Automovel> lista = automovelService.obterLista();
+    	return ResponseEntity.status(HttpStatus.OK).body(lista);
     }
-
-
-
-
-
+    
+    @PutMapping
+    public ResponseEntity<Automovel> atualizar(@RequestBody Automovel automovel) {
+    	Automovel automovelAtualizado = automovelService.merge(automovel);
+    	return ResponseEntity.status(HttpStatus.OK).body(automovelAtualizado);
+    }
 }

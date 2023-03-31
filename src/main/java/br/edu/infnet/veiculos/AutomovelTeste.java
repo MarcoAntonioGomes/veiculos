@@ -57,7 +57,7 @@ public class AutomovelTeste implements ApplicationRunner {
                             automovel1.setValor(Float.parseFloat(campos.get(3)));
                             automovel1.setMarca(campos.get(4));
                             System.out.println("Cálculo de venda: "+automovel1.calcularVenda());
-                            automovelService.incluir(automovel1);
+                            automovelService.merge(automovel1);
 
                         }
 

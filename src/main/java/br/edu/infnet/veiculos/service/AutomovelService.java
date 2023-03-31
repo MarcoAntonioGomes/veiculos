@@ -3,13 +3,13 @@ package br.edu.infnet.veiculos.service;
 
 
 
-import br.edu.infnet.veiculos.model.domain.Automovel;
-import br.edu.infnet.veiculos.relatorio.AppImpressao;
-import br.edu.infnet.veiculos.repository.AutomovelRepository;
+import java.util.Collection;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.util.Collection;
+import br.edu.infnet.veiculos.model.domain.Automovel;
+import br.edu.infnet.veiculos.repository.AutomovelRepository;
 
 @Service
 public class AutomovelService {
@@ -17,20 +17,15 @@ public class AutomovelService {
     @Autowired
     private AutomovelRepository automovelRepository;
 
-    public void incluir(Automovel automovel){
-
-        automovelRepository.save(automovel);
-
-        new AppImpressao().relatorio(automovel,"Inclusão do Automovel " + automovel.getNome() + " realizada com sucesso!!!");
+    public Automovel merge(Automovel automovel){
+        return automovelRepository.save(automovel);
     }
 
     public void excluir(Integer id){
         automovelRepository.deleteById(id);
     }
 
-    public  Collection<Automovel> obterLista(){
+    public Collection<Automovel> obterLista(){
         return (Collection<Automovel>) automovelRepository.findAll();
     }
-
-
 }
