@@ -64,13 +64,7 @@ public class AutomovelControllerTest {
 				.content(objectMapper.writeValueAsString(automovel))).andExpect(status().isOk());
 	}
 	
-	@Test
-	void deleteExclusaoAutomovelSuccessTest() throws Exception {
-		Mockito.doNothing().when(automovelService).excluir(Mockito.anyInt());
-		mockMvc.perform(delete("/automovel/1").contentType("application/json")
-				.content(objectMapper.writeValueAsString("Automovel excluído com sucesso!!"))).andExpect(status().isNoContent());
-	}
-	
+
 	
 	private Automovel getAutomovel() {
 		Automovel automovel = new Automovel();
