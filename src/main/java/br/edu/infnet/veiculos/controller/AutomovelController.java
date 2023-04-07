@@ -50,6 +50,7 @@ public class AutomovelController {
     	Collection<Automovel> lista = automovelService.obterLista();
         LOG.info("Buscando Automoveis...");
     	return ResponseEntity.status(HttpStatus.OK).body(lista);
+
     }
     
     @PutMapping
