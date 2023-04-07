@@ -1,9 +1,7 @@
 package br.edu.infnet.veiculos.controller;
 
-import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.delete;
-import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
-import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
-import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.put;
+
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.*;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
 import java.util.ArrayList;
@@ -21,6 +19,7 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 
 import br.edu.infnet.veiculos.model.domain.Automovel;
 import br.edu.infnet.veiculos.service.AutomovelService;
+
 
 @SpringBootTest
 @AutoConfigureMockMvc
@@ -63,7 +62,13 @@ public class AutomovelControllerTest {
 		mockMvc.perform(put("/automovel").contentType("application/json")
 				.content(objectMapper.writeValueAsString(automovel))).andExpect(status().isOk());
 	}
-	
+
+	@Test
+	void deleteExclusaoAutomovelSuccessTest() throws Exception {
+		Mockito.doNothing().when(automovelService).excluir(Mockito.anyInt());
+		mockMvc.perform(delete("/automovel/1").contentType("application/json")
+				.content(objectMapper.writeValueAsString("Automovel excluído com sucesso!!"))).andExpect(status().isNoContent());
+	}
 
 	
 	private Automovel getAutomovel() {
